@@ -4,22 +4,20 @@ import threading
 from Tkinter import *
 from win10toast import ToastNotifier
 import subprocess
-import pyttsx
 root = Tk()
 toaster = ToastNotifier()
-engin = pyttsx.init()
-
 def start_server():
   global dead
 ##  global httpd
   dead = True
 ##  httpd = BaseHTTPServer.HTTPServer(('127.0.0.1', 4443), SimpleHTTPServer.SimpleHTTPRequestHandler)
-  toaster.show_toast("Server Started","Server Started on 127.0.0.1 and port is 4443")
   print threading.current_thread()
-  subprocess.call(['php','-S','127.0.0.1:1234'],shell=True)
+  dire = subprocess.check_output(['chdir'],shell=True)
+  main_dir = dire+'\dist'
+  subprocess.call(['php','-S','127.0.0.1:1234','-t','D:\python\dist'],shell=True)
+  toaster.show_toast("Server Started","Server Started on 127.0.0.1 and port is 4443")
   Label(root,text='Server Started on 127.0.0.1 and port is 12345').grid(column=0,row=2)
-  engin.runAndWait()
-  engin.say('Server Started on 127.0.0.1 and port is 4443')
+
 
 ##  httpd.serve_forever()
   dead = False
