@@ -49,11 +49,11 @@ def main():
                 Label(root,text=ip_full).grid(column=1,row=8)
            else:
                 succ = '#########################'
-                succ = '[+]Success==>{0}'.format(x)
+                succ2 = '[+]Success==>{0}'.format(x)
                 succ =  '#########################'
                 print succ
                 a = '[+]Success==>{0}'.format(x)
-                labal = Label(root,text=succ,bg='black',fg='green').grid(column=1,row=7)
+                labal = Label(root,text=succ2,bg='black',fg='green').grid(column=1,row=9)
                 break
   except:
      labal = Label(root,text='[!!]Some Thing Went Wrong Cheak Word List or Tor Proxy ',bg='black',fg='red').pack()
