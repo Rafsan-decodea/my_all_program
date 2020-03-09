@@ -51,6 +51,24 @@ def fetch():
        print ('\n\n')
     print '[+]Data Count in  From Database in ===>{}'.format(len(a))
 
+def delete():
+    global ID
+    Id = ID.get()
+    con = MySQLdb.Connect('localhost','root','','testDB')
+    data = con.cursor()
+    sql = "delete  from student where id = {0}".format(Id)
+    data.execute(sql)
+    con.commit()
+def fresh_database():
+    con = MySQLdb.Connect('localhost','root','','testDB')
+    data = con.cursor()
+    sql = "delete * from student"
+    data.execute(sql)
+    con.commit()
+
+
+
+
 def gui_show():
     global dead
     dead = True
@@ -70,16 +88,18 @@ def gui_show():
        deta7 =  ('[+] Calss is ==>{}'.format(x[5]))
        deta8 =  ('[+] Section Name is ==>{}'.format(x[6]))
        deta9 = ('[+] Batch Name is ===>{}'.format(x[7]))
-       Label(root2,text=deta1).grid(column=2,row=1)
-       Label(root2,text=deta2).grid(column=2,row=2)
-       Label(root2,text=deta3).grid(column=2,row=3)
-       Label(root2,text=deta4).grid(column=2,row=4)
-       Label(root2,text=deta5).grid(column=2,row=5)
-       Label(root2,text=deta6).grid(column=2,row=6)
-       Label(root2,text=deta7).grid(column=2,row=7)
-       Label(root2,text=deta8).grid(column=2,row=8)
-       Label(root2,text=deta9).grid(column=2,row=9)
+       Label(root2,text=deta1).pack()
+       Label(root2,text=deta2).pack()
+       Label(root2,text=deta3).pack()
+       Label(root2,text=deta4).pack()
+       Label(root2,text=deta5).pack()
+       Label(root2,text=deta6).pack()
+       Label(root2,text=deta7).pack()
+       Label(root2,text=deta8).pack()
+       Label(root2,text=deta9).pack()
        Label(root2,text='\n\n').pack()
+    dead = False
+
 
 
 
@@ -116,6 +136,7 @@ def gui():
     global stu_batch
     global stu_roll
     global stu_section
+    global ID
     Label(root,text='   School Management System').grid(column=3,row=0)
     Label(root,text='-------------------------------').grid(column=3,row=2)
     Label(root,text='Name:').grid(column=1,row=3)
@@ -145,6 +166,10 @@ def gui():
     Button(root,text='Submit',command=temp).grid(column=3,row=8)
     Button(root,text='Fetch_All',command=temp2).grid(column=3,row=9)
     Button(root,text='Fetch_in_gui',command=temp3).grid(column=3,row=10)
+    ID = StringVar()
+    Entry(root,textvariable=ID).grid(column=3,row=11)
+    Button(root,text='Delete',command=delete).grid(column=3,row=12)
+    Button(root,text='Fresh_database',command=fresh_database).grid(column=3,row=13)
 
     root.mainloop()
 
