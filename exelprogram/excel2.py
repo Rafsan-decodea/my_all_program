@@ -2,14 +2,15 @@ from openpyxl import *
 from openpyxl.styles import Alignment
 
 
-input_data = raw_input("input file name===>")
-waireless = raw_input("[+] input Search 1===>")
-lanphone = raw_input("[+] input search 2===>")
+
+input_data  = input("input file name===>")
+waireless =   input("[+] input Search 1===>")
+lanphone =    input("[+] input search 2===>")
 
 excel = load_workbook(input_data)
 files = excel[excel.active.title] #Define Sheet name
 
-
+print (excel.active.title)
 
 store1 = []
 store2 = []
@@ -18,8 +19,10 @@ store_lan =[]
 
 sheet = files['A']
 
-for x in xrange(len(sheet)):
+
+for x in range(len(sheet)):
       store1.append(sheet[x].value)
+      print (sheet[x].value)
 
 for x in store1:
      for y in  x.splitlines():
@@ -51,10 +54,10 @@ for lenth in range(len(store2)):# this is process find Out Store2  data lan
 
 print("\n===========================")
 for x in store_wair:
-    print (x)
+      print (x)
 print("="*10)
-for x in store_lan:
-    print (x)
+# for x in store_lan:
+#     print (x)
 
 
 
