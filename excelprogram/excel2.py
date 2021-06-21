@@ -7,7 +7,10 @@ input_data  = input("input file name===>")
 waireless =   input("[+] input Search 1===>")
 lanphone =    input("[+] input search 2===>")
 
-excel = load_workbook(input_data)
+convert_xlsxEXT = input_data+".xlsx"
+
+
+excel = load_workbook(convert_xlsxEXT)
 files = excel[excel.active.title] #Define Sheet name
 
 print (excel.active.title)
@@ -17,17 +20,28 @@ store2 = []
 store_wair =[]
 store_lan =[]
 
-sheet = files['A']
+sheet = files['B']
 
 
 for x in range(len(sheet)):
       store1.append(sheet[x].value)
-      print (sheet[x].value)
+      #print ("[+] This is from normal==>",sheet[x].value)
+
 
 for x in store1:
-     for y in  x.splitlines():
-         store2.append(y)
+     if x is not None:
+        for y in  x.splitlines():
+            if "Wireless" in y:
+                store_wair.append(y)
+            else:
+                 print("*"*10)
+                 store_lan.append(y)
 
+for wair in store_wair:
+    print ("[Waireless]===>",wair)
+
+for land in store_lan:
+    print ("[Land]==>",land)
 
 
 for lenth in range(len(store2)):#this is process find Out Store1  data lan
@@ -52,12 +66,12 @@ for lenth in range(len(store2)):# this is process find Out Store2  data lan
 
 #sheet1 = excel.active
 
-print("\n===========================")
-for x in store_wair:
-      print (x)
-print("="*10)
-# for x in store_lan:
-#     print (x)
+##print("\n===========================")
+##for x in store_wair:
+##      print (x)
+##print("="*10)
+##for x in store_lan:
+##     print (x)
 
 
 
