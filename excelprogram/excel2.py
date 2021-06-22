@@ -3,9 +3,10 @@ from openpyxl.styles import Alignment
 
 
 
-input_data  = input("input file name===>")
-waireless =   input("[+] input Search 1===>")
-lanphone =    input("[+] input search 2===>")
+input_data  = input("[+]input file name===>")
+input_colume_name = input("[+]input column Name==>")
+##waireless =   input("[+] input Search 1===>")
+##lanphone =    input("[+] input search 2===>")
 
 convert_xlsxEXT = input_data+".xlsx"
 
@@ -20,7 +21,7 @@ store2 = []
 store_wair =[]
 store_lan =[]
 
-sheet = files['B']
+sheet = files[input_colume_name]
 
 
 for x in range(len(sheet)):
@@ -34,24 +35,33 @@ for x in store1:
             if "Wireless" in y:
                 store_wair.append(y)
             else:
-                 print("*"*10)
                  store_lan.append(y)
 
-for wair in store_wair:
+new_excel_file = load_workbook("data.xlsx")
+new_excel_sheet = new_excel_file.get_sheet_by_name("Sheet1")
+
+
+for wair in store_wair :
     print ("[Waireless]===>",wair)
+    new_excel_sheet.cell(row=1,column=1).value = wair
+
+
 
 for land in store_lan:
     print ("[Land]==>",land)
 
 
-for lenth in range(len(store2)):#this is process find Out Store1  data lan
-         if waireless in store2[lenth]:
-             store_wair.append(store2[lenth]) # if store 1st data is Wairless
+new_excel_file.save("data.xlsx")
 
 
-for lenth in range(len(store2)):# this is process find Out Store2  data lan
-         if lanphone in store2[lenth]: # if store 1st data is Lan
-            store_lan.append(store2[lenth])
+##for lenth in range(len(store2)):#this is process find Out Store1  data lan
+##         if waireless in store2[lenth]:
+##             store_wair.append(store2[lenth]) # if store 1st data is Wairless
+##
+##
+##for lenth in range(len(store2)):# this is process find Out Store2  data lan
+##         if lanphone in store2[lenth]: # if store 1st data is Lan
+##            store_lan.append(store2[lenth])
 
 
 # sheet1 = files['D']
